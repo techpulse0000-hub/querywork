@@ -1,0 +1,188 @@
+
+--- PAGE 1 ---
+ 
+Advanced search techniques 
+Page 1 of 8 
+Copyright © 2014 The Open University 
+Advanced search techniques 
+Searching for information at postgraduate level has to be precise and thorough.  
+Successful literature reviews are created from searches using well-chosen keywords and phrases over a broad 
+range of resources.  
+To conduct a precise and thorough search you may need to use a variety of techniques, from Boolean logic to 
+truncation and proximity searching.  
+Not every technique is supported by every resource, and the ways in which the techniques are used can differ, so 
+always check the help available for each individual resource. 
+If your search is continued over a long time you might find it helpful to keep a diary or journal. This can help trace 
+changes in the direction of your research, and record useful search strategies, keywords and phrases. 
+ 
+  
+
+--- PAGE 2 ---
+ 
+Advanced search techniques 
+Page 2 of 8 
+Copyright © 2014 The Open University 
+Using the right keywords 
+To create a precise and thorough search for information you will need to spend some time gathering together 
+relevant search terms. Synonyms and related terms and phrases can be gathered from several sources.  
+Try: 
+Dictionaries and thesauri – general or subject specific, online or printed  
+Keywords and descriptors used in key journal articles  
+Thesauri, subject headings, phrase lists or other lists of controlled vocabulary in individual databases  
+Example search: Transferable skills of research students 
+Search terms Discussion 
+Transferable, moveable, assignable 
+ 
+ability, training, masters 
+ 
+BPhil, MPhil, EdD, PhD, doctorate, postgraduate 
+ 
+Be aware of the subtly different emphases of these terms; 
+and the effects they may have on your search results.  
+ 
+  
+
+--- PAGE 3 ---
+ 
+Advanced search techniques 
+Page 3 of 8 
+Copyright © 2014 The Open University 
+Phrase searching 
+Phrase searching helps refine your search by allowing you to look for words together in a phrase, in the order 
+specified.  
+This type of search is supported by most databases. 
+The most common indicator of a phrase is speech marks. 
+ 
+Example search: Transferable skills of research students 
+Search terms Discussion 
+"transferable skills" "research students" 
+ 
+This search would retrieve material on the 
+'transferable skills of research students’.  
+It would also filter out 'transferable and research 
+skills for sixth-form students', because the word 
+matches do not occur in the order specified.  
+ 
+ 
+  
+
+--- PAGE 4 ---
+ 
+Advanced search techniques 
+Page 4 of 8 
+Copyright © 2014 The Open University 
+Boolean logic 
+Boolean logic allows you to link your search terms in specific ways. It requires the use of the Boolean operators 
+AND, OR and NOT. 
+AND narrows your search 
+OR broadens your search 
+NOT narrows your search by excluding terms. 
+Example search: Transferable skills of research students 
+Search terms Discussion 
+"transferable skills" AND "research students" 
+ 
+Using AND will narrow the search by ensuring 
+material retrieved covers both phrases. Without this 
+Boolean linking, the search might produce results 
+matching one term but not the other, thus 
+increasing your results, and making the job of 
+filtering results harder. 
+"transferable skills" NOT "information literacy" 
+ 
+Using NOT will narrow a search on transferable 
+skills alone by excluding any material that also 
+mentioned information literacy. 
+"transferable skills" OR "ability" Using OR will broaden a search on transferable skills 
+by including matches on the synonym ability. 
+
+--- PAGE 5 ---
+ 
+Advanced search techniques 
+Page 5 of 8 
+Copyright © 2014 The Open University 
+Nested searches 
+Nested searches are used to create more complex Boolean logic statements. For example: 
+ 
+{pets NOT (cats OR dogs)} AND behaviour 
+ 
+This statement would be used to search for material on the behaviour of all pets except cats and dogs. 
+This type of searching is supported in many resources, often with the use of brackets or separate search boxes. 
+Example search: Transferable skills of research students 
+Search terms Discussion 
+{"transferable skills" NOT ("study skills" OR 
+"presentation skills")} and "research students" 
+This statement would be used to search for material 
+on the transferable skills of research students 
+excluding material that mentioned study skills or 
+presentation skills. 
+ 
+ 
+  
+
+--- PAGE 6 ---
+ 
+Advanced search techniques 
+Page 6 of 8 
+Copyright © 2014 The Open University 
+Proximity 
+Some databases allow searching for words in the same sentence, or within a defined number of words of one 
+another.  
+This type of relevance searching is based on the premise that words or phrases which are near to each other will 
+be related in some way.  
+Proximity is particularly useful when searching full text databases. 
+Example search: Transferable skills of research students 
+Search terms Discussion 
+"transferable skills" SAME "research students"  
+ 
+Using SAME will search for “transferable skills” in 
+the same sentence as “research students” 
+"transferable skills" w3 "research students" Using w3 will search for "transferable skills" within 
+3 words of "research students" 
+"transferable skills" NEAR "research students"  
+ 
+Using NEAR will search for "transferable skills" 
+within the database’s definition of ‘NEAR’ to 
+"research students" 
+  
+
+--- PAGE 7 ---
+ 
+Advanced search techniques 
+Page 7 of 8 
+Copyright © 2014 The Open University 
+Truncation 
+This is useful when searching for the singular and plural form of a word as well as for terms that can be reduced to 
+a common stem.  
+Often the asterisk (*) is used but other characters can also be inserted, including the exclamation mark (!). 
+Example search: A search for skill* 
+Search terms Discussion 
+Skill* This would retrieve skill, skills, skilling, skilled, etc. 
+ 
+Wildcard 
+You may be able to replace none, one or more letters within a word by using a character, often a question mark 
+(?) or an asterisk (*). 
+Example search: A search for Transfer?able 
+Search terms Discussion 
+Transfer?able This would retrieve transferable and transferrable 
+  
+
+--- PAGE 8 ---
+ 
+Advanced search techniques 
+Page 8 of 8 
+Copyright © 2014 The Open University 
+Saved searches 
+In many databases you can save a search to run at a later date. This is particularly useful if your search statement 
+is complex and lengthy to enter. 
+ 
+Common Pitfalls 
+ Be aware of variations in British and American spelling. 
+ Make sure you don't restrict yourself to items held in online databases. Some online databases go back as 
+far as the 1980s, but others do not even go that far. There may be important publications that were 
+published before that, and you will need to search elsewhere for these. 
+ Authors' first names and initials are often indexed inconsistently in databases. 
+ Some journal issues are also published as books. 
+ Be aware that not all important research is published in English. 
+ Foreign languages may be transliterated in different ways, such as the German ü, which can be replaced 
+with u or ue. 
+ Some foreign journals have translations published much later, and with different dates and page numbers. 

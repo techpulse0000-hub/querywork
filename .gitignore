@@ -1,0 +1,20 @@
+.venv/
+node_modules/
+dist/
+data/
+.env
+__pycache__/
+.pytest_cache/
+.env.example
+
+# Local test scratch, caches and OS files
+tmp/
+work/
+*.log
+*.pyc
+Thumbs.db
+.DS_Store
+
+# Ignore environment variants; publish only the deliberately blank template.
+.env*
+!.env.template

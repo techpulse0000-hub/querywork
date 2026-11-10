@@ -1,0 +1,23 @@
+import {useEffect, useState} from 'react';
+import {Check, KeyRound} from 'lucide-react';
+type State={generator_model:string;grader_model:string;openai_configured?:boolean;tavily_configured?:boolean;input_usd_per_million?:string;output_usd_per_million?:string;tavily_usd_per_credit?:string};
+export default function Connections({config,onRefresh,onNotice,onError}:{config:State|null;onRefresh:()=>Promise<void>;onNotice:(s:string)=>void;onError:(s:string)=>void}){
+ const [openai,setOpenai]=useState(''),[tavily,setTavily]=useState(''),[generator,setGenerator]=useState(''),[grader,setGrader]=useState(''),[busy,setBusy]=useState(false);
+ const [inputRate,setInputRate]=useState(''),[outputRate,setOutputRate]=useState(''),[creditRate,setCreditRate]=useState('');
+ useEffect(()=>{setInputRate(config?.input_usd_per_million||'');setOutputRate(config?.output_usd_per_million||'');setCreditRate(config?.tavily_usd_per_credit||'');},[config?.input_usd_per_million,config?.output_usd_per_million,config?.tavily_usd_per_credit]);
+ useEffect(()=>{setGenerator(config?.generator_model||'');setGrader(config?.grader_model||'');},[config?.generator_model,config?.grader_model]);
+ async function connect(validate=true){
+  setBusy(true);onError('');onNotice('');
+  try{
+   const r=await fetch('/api/v1/config/environment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({openai_key:openai||null,tavily_key:tavily||null,generator_model:generator,grader_model:grader,input_usd_per_million:inputRate===''?null:Number(inputRate),output_usd_per_million:outputRate===''?null:Number(outputRate),tavily_usd_per_credit:creditRate===''?null:Number(creditRate)})});
+   const data=await r.json();if(!r.ok)throw Error(typeof data.detail==='string'?data.detail:'Check the connection fields');
+   setOpenai('');setTavily('');await onRefresh(); if(!validate){onNotice('Environment saved locally. The keys will remain available after restart.');return;}
+   const v=await fetch('/api/v1/config/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+   const result=await v.json();if(!v.ok)throw Error(result.detail||'Validation failed');
+   onNotice('Environment saved and connections validated. Live experiments are ready.');
+  }catch(e){onError((e as Error).message);}finally{setBusy(false);}
+ }
+ return <section className="connection-form"><div className="section-title"><KeyRound size={19}/><h2>Environment variables</h2></div><p>Save your OpenAI and Tavily keys in the local .env file. Blank fields keep existing values. Save first, then validate when your model IDs are set.</p><label>OpenAI API key<input type="password" autoComplete="new-password" spellCheck={false} value={openai} onChange={e=>setOpenai(e.target.value)} placeholder={config?.openai_configured?'Configured — leave blank to keep':'Paste your OpenAI API key'}/></label><label>Tavily API key<input type="password" autoComplete="new-password" spellCheck={false} value={tavily} onChange={e=>setTavily(e.target.value)} placeholder={config?.tavily_configured?'Configured — leave blank to keep':'Paste your Tavily API key'}/></label><div className="model-fields"><label>Generator model ID<input value={generator} spellCheck={false} onChange={e=>setGenerator(e.target.value)} placeholder="Model available in your OpenAI account"/></label><label>Grader model ID<input value={grader} spellCheck={false} onChange={e=>setGrader(e.target.value)} placeholder="Can use the same model as the generator"/></label></div><div className="model-fields"><label>Input USD per million tokens<input type="number" min="0" step="any" value={inputRate} onChange={e=>setInputRate(e.target.value)}/></label><label>Output USD per million tokens<input type="number" min="0" step="any" value={outputRate} onChange={e=>setOutputRate(e.target.value)}/></label><label>Tavily USD per credit<input type="number" min="0" step="any" value={creditRate} onChange={e=>setCreditRate(e.target.value)}/><small>Pay-as-you-go: $0.008. Your free allowance or subscription can reduce actual billing.</small></label></div><button className="button" disabled={busy||(!openai&&!tavily&&!generator.trim()&&!grader.trim()&&!inputRate&&!outputRate&&!creditRate)} onClick={()=>connect(false)}>Save environment</button> <button className="primary" onClick={()=>connect(true)} disabled={busy||!generator.trim()||!grader.trim()||(!openai&&!config?.openai_configured)||(!tavily&&!config?.tavily_configured)}>{busy?'Validating connections…':'Save & validate connections'}<Check size={16}/></button><small className="session-note">Keys are saved in the local .env file and excluded from API responses and experiment exports.</small><hr/></section>;
+}
+
+

@@ -1,0 +1,96 @@
+
+--- PAGE 1 ---
+Looking for more tips on advanced searching? 
+Check out our Advanced Search Techniques and Google Scholar tip sheets. 
+“”
+site:domain
+SITE
+Adding site: to a search query will limit 
+search results to a speciﬁc website or type of 
+domain, such as .org or .edu. This can 
+eliminate commercial websites (.coms) from 
+your results.
+For example, here the search results for 
+“workplace bullying” are limited to education 
+websites (.edu). 
+To find the most 
+recent results, 
+select the Tools 
+button, drop down 
+the Any time filter 
+and select a 
+publishing range.
+Use the search tools available to find more recent results, limit results 
+t
+o only Images or News, or use the Advanced Search feature.
+SEARCH TOOLS
+Putting the phrase in quotes narrows the search to 
+find results that contain the words in that order.
+This example, without quotes, returns results that 
+contain any of the words in any order.
+Compare these results:
+EXACT PHRASING 
+Enclosing a phrase in quotation marks tells the search engine that 
+it should search for the words as an entire phrase.
+Good research techniques are a skill that you will use both in college and in your 
+career. Here are helpful internet search engine shortcuts to help your research. 
+ADVANCED INTERNET SEARCH TECHNIQUES
+
+--- PAGE 2 ---
+BOOLEAN OPERATORS
+Library databases use Boolean Operators when searching for material.
+Internet search engines also recognize Boolean Operators.
+AND
+OR
+NOT
+“workplace “conflict 
+bullying” resolution”
+“workplace
+bullying”
+Use AND when you want to see results that include 
+both keywords. This is the default setting for Internet 
+search engines.
+Use OR when you want to see results that may 
+include either keywords, but may only include one. 
+Your search result list will be much larger.
+NOT should be used very cautiously. It will exclude a 
+term from your search, and is useful when many 
+search results are irrelevant. Google recognizes the 
+minus sign - in place of NOT. Bing recognizes both 
+NOT and -  .
+
+
+--- PAGE 3 ---
+USING AN ASTERISK
+An asterisk (*) is sometimes referred to as a “wildcard” operator.
+It is used to search for a missing word, ending of a word, or different spelling.
+For example:
+globalist
+globalism
+globalization
+globalisation 
+Use this carefully! In our previous example, 
+“workplace bullying”, searching for bull* would give 
+you many irrelevant results, so we would not use it:
+bully
+bullies
+bulldog
+bulls
+bullseye
+bulldozer
+bulletin
+… and much more!
+DEFINING A WORD
+A quick way to find the definition of 
+a word in a serach browser is to 
+use define:
+define:word
+FIND AN IMAGE OR 
+PDF
+Using filetype: will limit your results 
+to that particular filetype extension, 
+like .pdf or .jpg
+filetype:pdf
+Please remember to list the filetype 
+immediately after the colon, with no 
+space in between

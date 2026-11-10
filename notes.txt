@@ -1,0 +1,154 @@
+QUERYWORK - PROJECT NOTES AND HANDOFF
+Updated: 10 November 2026
+
+WHAT THE PROJECT IS ABOUT
+Querywork evaluates and improves web-search queries against a specific desired
+outcome. The user supplies an initial search, the result they actually want,
+mandatory evidence requirements, a target score and a search budget.
+
+The application generates query alternatives, searches through Tavily, grades
+returned evidence independently, checks each round's outcome, and refines queries
+automatically. It preserves the best independently graded query and the complete
+trial history. It began as a research tool for Lead Chain, but the core is general.
+
+INTENDED USERS / PERSONAS
+- Lead researcher: discover potential organizations to approach, with source links.
+- Research operator: compare search strategies against explicit evidence criteria.
+- Prompt/eval builder: version prompts and inspect why retrieval succeeds or fails.
+These are intended personas; a commercial target market has not been validated.
+
+AGENT PERSONAS AND RESPONSIBILITIES
+1. Search strategist: creates concise, evidence-seeking query variants. Learns from
+   successful source wording and missing evidence; cannot award its own score.
+2. Independent grader: judges supplied evidence against fixed requirements. It
+   does not receive generator reasoning, original query wording or previous scores.
+3. Outcome reviewer: checks actual returned results after each automatic round,
+   including the final round. Findings inform the next batch. Its narrative is
+   advisory and cannot overwrite independent grades.
+
+MAJOR UPDATES
+1. Initial product and local application
+   - React/TypeScript interface; FastAPI backend; SQLite experiment history.
+   - Search goal, requirements, query comparison, evidence expansion and exports.
+   - Separate generation and grading calls; deterministic fictional demo mode.
+   - HTTP API, MCP adapter, Windows setup and launcher.
+2. Provider configuration
+   - Environment page accepts and saves OpenAI/Tavily keys locally.
+   - Model selection, credential validation and editable cost inputs.
+   - Keys are server-side and excluded from responses/exports.
+3. Automatic improvement
+   - Target score and total search budget configured before starting.
+   - Batches of five or ten; no default five-round manual handoff.
+   - Cancellation, saved evidence, explicit stopping reasons and best retention.
+4. Generator upgrade and retrieval strategy
+   - Historical test used gpt-6.1-sol with high reasoning for generation.
+   - Concise source-language queries; discovery followed by verification.
+   - Named entities and dates must come from user input or returned evidence.
+5. Sports prospect goal corrected
+   - Printing vendors were not the desired buyers/prospects.
+   - Revised goal: teams participating in upcoming major tournaments, or leagues
+     organizing them. Printing demand is not a mandatory proof requirement.
+   - Future dates and explicit participant/organizer relationships are required.
+6. Winner-focused variations
+   - Investigate a score jump and create nearby controlled variations.
+   - A new winner receives a fully local batch. After one stalled batch, 80% local
+     / 20% nearby; after two or more, 60% / 40%. Ties/losses retain the anchor.
+7. Research-guided prompts and self-review (7 November 2026)
+   - Prompts use role, task, guidelines and examples.
+   - Page-labelled passages from three supplied PDFs reach the strategist/reviewer.
+   - Every completed automatic round gets an outcome check, including the final.
+   - Supported grading disputes get one isolated regrade. Unresolved disputes are
+     held out of best-query acceptance without rewriting independent scores.
+   - Unsupported review quotes are removed and marked unverified/incomplete.
+   - Compact review output, medium reviewer reasoning and a longer timeout.
+   - Failed reviews can resume against cached evidence without repeated searches.
+8. Project handoff and source package (10 November 2026)
+   - Added this notes.txt, PROJECT.md, CHANGELOG.md and update-maintenance rules.
+   - Included historical test chart and workbench screenshots under docs/.
+   - Added a clean .env.template; legacy local .env.example remains excluded.
+   - Source publication excludes keys, tokens, databases, caches and dependencies.
+
+RECORDED TEST RESULTS - HISTORICAL, NOT NEW LIVE CHECKS
+- Latest live test date: 7 November 2026.
+- Ten actual searches, two rounds, 100 returned-result checks.
+- Round-best scores: 43.3 then 60.0. Target 80 was not reached.
+- Best query: US Youth Futsal Atlantic Championships January 2027 accepted teams.
+- Known estimated API usage cost: $0.811617, including recoverable failed-review
+  usage. Timed-out requests may have additional unreported provider charges.
+- Both outcome reviews completed; first review fed the next batch.
+- Final review still found missing proof of league identity and named-team
+  participation. The score is not a verified prospect-accuracy percentage.
+- 23 regression tests, production build and desktop/mobile checks passed in the
+  recorded upgrade verification. This documentation task runs no paid searches.
+
+SCORE INTERPRETATION
+Each returned result is graded 0-3. Aggregate score = 100 * sum(grades) / 30,
+with ten possible result slots. Missing slots and identified duplicates add zero.
+Seven grade-3 results can produce 70, but partial results can also total 70.
+One source may list many prospects while occupying a single result slot. A higher
+score is not proof of buying intent, full coverage, truth, or outreach success.
+
+CODE MAP
+backend/app.py             Local API, configuration, persistence and background jobs
+backend/engine.py          Provider requests, generation, search, grading, validation
+backend/optimizer.py       Budgeted automatic loop, comparisons and review/recheck flow
+backend/search_strategy.py Winner selection and local/nearby variation allocation
+backend/search_prompts.py  Versioned strategist, grader and reviewer prompts
+backend/research.py        Page-labelled PDF-text selection and extraction hashes
+backend/round_review.py    Per-query/result outcome review and quotation checks
+src/main.tsx              Experiment setup, history, prompts and workbench
+src/Optimization.tsx      Automatic-run controls and comparison table
+src/RoundReviews.tsx       Outcome findings, warnings and reference display
+src/Connections.tsx       Provider and environment settings
+mcp/server.ts             MCP tools using the same local API
+tests/test_app.py          Regression suite and provider fixtures
+references/search-guides/  Original supplied PDFs and full text extractions
+
+START / CONFIGURE
+Requires Python 3.12+ and Node.js 22+. Run Setup.ps1, then Launch.cmd.
+Open http://127.0.0.1:8766/. Demo mode needs no keys.
+For live use, enter keys in Environment or copy .env.template to .env locally.
+Validate model/provider access. Review account pricing before paid operations.
+Port 8765 belongs to a separate application and must not be modified.
+
+CURRENT LIMITATIONS AND TO-DO
+Priority 1 - Evidence reliability
+[ ] Strengthen semantic date checks and team/league identity validation.
+[ ] Improve canonical duplicate detection across aliases and event pages.
+[ ] Reduce unsupported reviewer quotations; preserve conservative verification.
+[ ] Keep provisional grader scores distinct from confirmed useful outcomes.
+Priority 2 - Research usefulness
+[ ] Extract unique prospects separately from scoring URL slots.
+[ ] Verify full source pages where snippets are incomplete.
+[ ] Separate optional contact enrichment from mandatory evidence verification.
+[ ] Define geography, upcoming-event window and meaning of major per experiment.
+Priority 3 - Evaluation and operation
+[ ] Add a representative, human-labelled benchmark across multiple search goals.
+[ ] Compare model/prompt changes on the same fixed rubric and evidence snapshot.
+[ ] Improve cost/latency reporting for reviews, retries and timeouts.
+[ ] Remove local absolute paths and saved-case IDs from portable test harnesses.
+Priority 4 - Productization
+[ ] Validate the target customer and product demand.
+[ ] Design hosted authentication, user isolation and deployment if moving online.
+[ ] Add production monitoring, billing and abuse controls before a public service.
+
+MAINTENANCE RULE FOR EVERY MAJOR UPDATE
+Update notes.txt, PROJECT.md and CHANGELOG.md in the same change. Record what
+changed, why, relevant files, tests and evidence, known limits, costs when measured,
+and next tasks. Version prompts; preserve historical results. Refresh screenshots
+when visible behavior changes. Never label old measurements as new test results.
+
+PUBLICATION RULES
+Keep .env, legacy .env.example, data/, local API tokens, databases, .venv/,
+node_modules/, caches and scratch files out of source uploads. The supplied PDFs
+are reference material, not a claim of ownership or redistribution rights. This
+initial publication is intended for a private repository. Repository creation or
+upload must be verified before claiming that GitHub publication succeeded.
+
+MEDIA
+docs/test-scores.svg / test-scores.png   Recorded 43.3 -> 60 versus target 80
+docs/screenshots/outcome-review-desktop.png
+docs/screenshots/outcome-review-mobile.png
+docs/screenshots/automatic-improvement-setup.png
+No video has been recorded. The ambiguous video request remains unconfirmed;
+the written handoff and existing screenshots are included now.
