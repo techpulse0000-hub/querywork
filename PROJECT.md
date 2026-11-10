@@ -4,6 +4,12 @@ Querywork turns an initial web-search query and a desired outcome into a measura
 
 It originated as a research component for Lead Chain. Its core supports general research goals; it is currently a single-user local app, not a hosted commercial service.
 
+## Handoff for a new maintainer
+
+Read [README.md](README.md) for a standalone operating guide and [notes.txt](notes.txt) or the [technical handoff](docs/TECHNICAL-HANDOFF.md) for the full context. The handoff explains the languages and dependencies, file responsibilities, data model, agent boundaries, budget/scoring semantics, approaches tried and rejected, historical test limitations, recovery procedures and prioritized next work. It is based on the implemented source rather than assuming the original chat is available.
+
+Private repository: https://github.com/techpulse0000-hub/querywork. Current product scope is local and single-user; publication does not make it a deployed SaaS service.
+
 ## Who it serves
 
 Intended users include lead researchers, research operators and people evaluating retrieval prompts. The commercial target customer remains unvalidated. Users define what would make a result useful; the app measures returned evidence against those requirements.
@@ -52,3 +58,8 @@ Strengthen semantic date/entity checks and deduplication, extract unique prospec
 ## Update policy
 
 Every major change must update notes.txt, this overview and CHANGELOG.md with behavior, evidence, limitations and next tasks. Preserve prompt versions and historical measurements. Publish source without credentials or private experiment data.
+
+
+## Whole-folder provenance
+
+The [workspace inventory](docs/WORKSPACE-INVENTORY.md) covers the surrounding local workspace, including the original product plan, all historical screenshots, private runtime reports, PDF scratch work, release artifacts and installed/generated folders. Original planning and screenshots are preserved inside docs/ for GitHub readers. It distinguishes the proposed specification from implemented features and explains exclusions rather than implying that ignored data does not exist. notes.txt includes this inventory as well as the technical handoff.

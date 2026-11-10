@@ -1,5 +1,19 @@
 # Major updates
 
+## 10 November 2026 - Complete maintainer handoff
+
+- Replaced the short README with a standalone product, architecture, installation, operation and development guide.
+- Added docs/TECHNICAL-HANDOFF.md and synchronized the full narrative into notes.txt.
+- Documented languages/dependencies and rationale, the three AI responsibilities, provider boundaries, file map, JSON/SQLite records, API/MCP contracts, and recovery behavior.
+- Reconstructed the approach history: manual evaluation, stronger generation, supplier-versus-buyer failure, corrected sports prospects, broad pivoting, winner-focused variants, four-part prompts, PDF references and outcome-review failure/recovery.
+- Separated historical rubric results from verified prospect quality and explained why different cutoffs/rubrics cannot be compared as one model leaderboard.
+- Recorded implementation limits including provisional best display, semantic quote/date/entity errors, URL normalization, reviewer authority, private-data dependencies and machine-specific harnesses.
+- Added a whole-folder inventory from the actual workspace, including private-data file purposes and grouped installed/build/cache trees.
+- Preserved the original product plan and all historical workspace screenshots in docs/; documented proposed features that are not implemented.
+- Included earlier supplier/continuous-loop trials from VERIFICATION.md rather than relying only on the recent chat.
+- Added tools/sync_handoff.py to build notes.txt from both canonical handoff documents; this documentation helper does not change application behavior or call providers.
+- Expanded operational next steps and documentation maintenance rules. No runtime logic, models, provider settings, saved evidence or paid tests changed in this documentation update.
+
 ## 10 November 2026 - Project handoff and publication preparation
 
 - Added notes.txt, PROJECT.md, this major-update log and ongoing documentation rules.

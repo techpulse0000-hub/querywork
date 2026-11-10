@@ -1,70 +1,165 @@
-# Querywork — Local Web Search Evals
+# Querywork - local web-search evaluations and automatic refinement
 
-A local React application, FastAPI engine, SQLite store, and TypeScript MCP adapter.
+Querywork tests whether search queries retrieve the evidence a user actually needs. Start with an initial query, describe the desired outcome, define mandatory requirements, and let the app generate, search, grade, review and refine within a budget.
 
-**Original search + desired outcome → AI generates queries → Tavily searches → isolated AI grades evidence → agent reviews outcomes → automatically refine within a budget.**
+It began as a research component for Lead Chain. It is currently a single-user local website, not a hosted SaaS product or an automatic outreach service.
 
-See [PROJECT.md](PROJECT.md) for the product overview, [notes.txt](notes.txt) for the project handoff and to-do list, and [CHANGELOG.md](CHANGELOG.md) for major updates.
+## Read this project in order
 
-## Start
+1. **This README:** what runs, how to install/configure it, and how to use it safely.
+2. **[notes.txt](notes.txt):** complete plain-text handoff plus the whole-workspace inventory, for someone taking over without the original chat.
+3. **[Technical handoff](docs/TECHNICAL-HANDOFF.md):** the same detailed narrative in Markdown, with architecture, every major code path, design decisions, experiments, failures and next work.
+4. **[PROJECT.md](PROJECT.md):** product overview, scope and current priorities.
+5. **[CHANGELOG.md](CHANGELOG.md):** major-update history and links to historical test reports.
+6. **[AGENTS.md](AGENTS.md):** maintenance requirements for future coding work.
 
-The dependencies and interface are prepared in this workspace. Double-click **Launch.cmd**, or run `powershell -ExecutionPolicy Bypass -File Launch.ps1`. Open **http://127.0.0.1:8766**.
+7. **[Whole-workspace inventory](docs/WORKSPACE-INVENTORY.md):** source, original plans, every screenshot, references, helper scripts, private-data file roles and grouped generated/dependency content. The original [October 27 plan](docs/planning/web-search-evals-product-plan-2026-10-27.md) is preserved with a clear implementation-gap map.
 
-For a fresh installation, install Python 3.12+ and Node.js 22+, then run `Setup.ps1` first. The service runs locally in the background and survives closing the browser. To stop it, stop the Python process listening on port 8766 using Task Manager. Do not stop unrelated Python processes.
+The detailed handoff is based on the folder contents and source files, not just the chat. It separates implemented behavior from proposals and explains why each approach was used or replaced. You do not need private local experiment data to understand the design, although exact historical cases cannot be replayed from the source repository alone.
 
-Demo mode is available immediately. Its example.com sources and deterministic grades are fictional fixtures; it makes no external API calls. Live mode uses your OpenAI and Tavily accounts.
+## What the app does
 
-## Configure live tests
+```text
+User: original query + desired outcome + must-have evidence + target/budget
+  -> search strategist generates alternative queries
+  -> Tavily retrieves up to ten results for each query
+  -> isolated grader evaluates supplied excerpts against the fixed rubric
+  -> outcome reviewer checks what this round actually found
+  -> application compares eligible scores and plans nearby variations
+  -> repeat within budget, or stop and show the best available research
+```
 
-Copy `.env.template` to `.env`, fill in `OPENAI_API_KEY`, `TAVILY_API_KEY`, `GENERATOR_MODEL`, and `GRADER_MODEL`, and restart the service. Choose model IDs available to your account that support developer messages and JSON output. No unavailable model is silently substituted. Keys are read server-side and never returned to the interface or exports.
+The user originally wanted better search terms, then requested automatic rounds, winner-focused variations and a self-check of each round's actual outcome. The application now controls those steps explicitly. The model does not execute an unrestricted agent loop or decide its own spending limit.
 
-Open **Environment** at **http://127.0.0.1:8766/environment** to enter your keys directly. **Save environment** stores entered values in the local `.env` file and applies them immediately; you can save the keys before choosing model IDs. **Save & validate connections** also checks provider access. Blank fields preserve existing values. Saved keys survive a restart and are excluded from API responses and experiment exports. Connection changes are rejected while jobs are running.
+## Technology and why it is there
 
-Validation checks model access and Tavily authentication; generation and grading behavior are exercised by the live smoke test itself. Then create a live experiment. Manual mode generates three alternatives plus the original baseline and permits two explicit refinements. Automatic mode generates batches of five or ten, grades and self-reviews each round, and continues until the target or configured budget is reached. Provider calls can retry, and reviews/rechecks also consume tokens. No live calls are made until configuration validation and a live operation are requested.
+| Layer | Technologies | Responsibility |
+| --- | --- | --- |
+| Website | React, TypeScript/TSX, HTML, CSS, Lucide | Setup forms, history, prompt editor, comparison table, evidence and review displays. |
+| Frontend tooling | Node.js, npm, Vite, TypeScript compiler | Dependency installation, development server, type checking and static production build. |
+| Backend | Python, FastAPI, Pydantic, Uvicorn | Validated API, configuration, background work and static site serving. |
+| Provider boundary | httpx, JSON Schema | Explicit OpenAI/Tavily requests, structured outputs, timeouts and bounded retries. |
+| Storage | SQLite with JSON records | Local experiments, prompts, jobs and settings without an external database service. |
+| MCP integration | TypeScript, MCP SDK, Zod, tsx | Six stdio tools forwarding to the same local API. |
+| Installation | PowerShell and CMD | Windows setup and background launcher. |
+| Research references | PDFs and extracted UTF-8 text | Page-labelled guideline passages supplied to the strategist/reviewer. |
 
-The core pipeline currently uses search excerpts (up to 16,000 characters per result). It does not verify current stock, business reliability, or contact success. Missing evidence remains unknown. Provider usage is saved; USD cost is unavailable until actual rates are configured. Do not treat the product's aggregate score as web-wide recall.
+Python keeps orchestration and evidence validation inspectable; TypeScript makes UI/tool contracts explicit; SQLite keeps the prototype local. The tradeoffs are a single worker, JSON-document rather than normalized relational storage, and Windows-specific launcher/test paths. No LangChain, AutoGen, external vector database or multi-agent swarm is installed. See the technical handoff for the full dependency and file map.
 
-## Interface
+## Fresh installation on Windows
 
-- **New experiment:** describe your search, desired outcome, and optional must-have requirements.
-- **Workbench:** edit generated terms, choose prompt versions, run searches, compare grades, expand evidence, and add feedback.
-- **Prompt library:** edit generator instructions/user templates and grader instructions; saving creates a new immutable version.
-- **History:** reopen previous experiments and rounds.
-- **Settings:** connection validation, API token location, and OpenAPI links.
+Prerequisites: Python 3.12+ and Node.js 22+ with npm. Use model IDs and provider access available to your own accounts; the historical model names in this project do not guarantee current availability.
 
-Every result receives a 0–3 grade. The application validates result IDs, requirement coverage, evidence quotations, unknown/failure caps, and duplicate identity. It computes `100 × sum(top ten grades) / 30`; missing positions score zero. Grader inputs contain only the desired outcome, requirements, and normalized result evidence. The grader also receives the evaluation date and duplicate policy. It excludes query wording, generator prompt/history/rationale, Tavily scores, and prior grades.
+```powershell
+git clone https://github.com/techpulse0000-hub/querywork.git
+cd querywork
+powershell -ExecutionPolicy Bypass -File .\Setup.ps1
+powershell -ExecutionPolicy Bypass -File .\Launch.ps1
+```
 
-Regrading uses stored evidence and preserves earlier judgments. Retrying unfinished queries reuses completed search evidence. A new round always runs fresh searches. Provider content is treated as untrusted data. The two AI roles can use the same model through independent calls.
+Setup.ps1 creates .venv, installs requirements.lock.txt, runs npm ci and builds dist/. Launch.cmd is a double-click alternative after setup. Launch.ps1 checks the identity of the service on port 8766 before starting Uvicorn hidden. The browser opens at **http://127.0.0.1:8766/**. Use -NoBrowser to start without opening another tab.
 
-## HTTP API
+The original workspace also has an unrelated service on port 8765. Do not stop or modify it. If you need foreground diagnostics:
 
-Interactive docs: **http://127.0.0.1:8766/docs**. Schema: **http://127.0.0.1:8766/openapi.json**.
+```powershell
+.venv/Scripts/python.exe -m uvicorn backend.app:app --host 127.0.0.1 --port 8766
+```
 
-Read `data/api-token` locally and send it as `Authorization: Bearer <token>`. The UI uses an HttpOnly, SameSite cookie. Access is restricted to loopback hosts with origin checks.
+Demo mode needs no provider keys. Its example.com sources and deterministic scores are fictional fixtures. A successful demo proves application behavior, not real search accuracy.
 
-| Method | Route under `/api/v1` | Purpose |
-|---|---|---|
-| GET | `/config` | Missing configuration and local paths; no secrets |
-| POST | `/config/validate` | Validate live provider credentials/model access |
-| GET / POST | `/experiments` | List or create cases |
-| GET | `/experiments/{id}` | Read rounds, queries, evidence, and judgments |
-| PUT | `/experiments/{id}/queries` | Edit alternatives before searching; preserve baseline |
-| POST | `/experiments/{id}/generate` | Generate initial terms |
-| POST | `/experiments/{id}/run` | Search and grade unfinished queries |
-| POST | `/experiments/{id}/refine` | Generate the next round using feedback |
-| POST | `/experiments/{id}/regrade` | Grade saved evidence without searching |
-| GET | `/jobs/{id}` | Poll a persisted job |
-| POST | `/jobs/{id}/cancel` | Stop new stages; retain completed work |
-| GET / POST | `/prompts` | Read or create immutable prompt versions |
-| GET | `/experiments/{id}/export/{json-or-csv}` | Export results |
+## Live configuration
 
-Create body: `{"original_search":"find suppliers","outcome":"Find wholesale suppliers in Lagos","requirements":["Wholesale","Lagos"],"mode":"demo"}`.
+Open **Environment** at http://127.0.0.1:8766/environment, enter OpenAI/Tavily keys and model IDs, save, then validate the connections. Blank secret fields preserve saved keys. Persistent settings are written to local .env; session settings can be applied without storing those session secrets.
 
-Action body: `{"idempotency_key":"unique-per-intended-action","prompt_id":null,"feedback":"optional refinement feedback"}`. Reuse the same idempotency key when retrying a submission whose response was lost. Long-running actions return HTTP 202 with a job ID. Poll until complete, partial, failed, canceled, or interrupted. A new key retries unfinished work; it does not overwrite completed queries. UI and MCP calls share the same API and database.
+Alternatively:
 
-## MCP integration
+```powershell
+Copy-Item .env.template .env
+```
 
-Start the local service first. Configure a compatible MCP host with an absolute application directory:
+Fill OPENAI_API_KEY, TAVILY_API_KEY, GENERATOR_MODEL and GRADER_MODEL locally, then restart when editing the file manually. The legacy local .env.example is intentionally excluded because it previously held real credentials. **Use the published blank .env.template instead.**
+
+Keys remain server-side and are excluded from configuration responses and experiment exports. Configuration changes are rejected while jobs run. Live operations require validation tied to a configuration fingerprint. Validation checks access/authentication; it does not validate model judgment or guarantee all subsequent structured requests succeed.
+
+The historical latest test used gpt-6.1-sol for generation and review, and gpt-4o-mini for isolated grading. Generation used high reasoning, review medium reasoning. Special reasoning settings and pricing are coded for the Sol model specifically, not generalized to every selectable model. Review account support and prices before changing models. PRICING.md is a dated historical configuration, not a live quote.
+
+## Run an experiment
+
+1. Enter the original query and the desired outcome. These are different inputs: the first is what someone would type, the second describes useful evidence.
+2. Add mandatory requirements. Be explicit about entity type, relationship, geography, dates and the meaning of words such as major.
+3. Choose demo or live mode. For a paid check, start with a small explicit budget.
+4. Set target, five or ten new terms per batch, and total search budget, then select **Run automatic improvement**.
+5. Inspect both the comparison table and **Round outcome checks**. Expand returned evidence and requirement quotations rather than trusting the aggregate score or summary alone.
+6. Export JSON for the full case. CSV is a result-oriented projection, not the complete review history.
+
+Defaults are target 90, five generated queries and 100 logical searches, but these are controls rather than promised outcomes. There is no default five-round handoff. An optional max_rounds cap is exposed through the HTTP API.
+
+The first automatic round also includes the original baseline. A five-query first batch can therefore use six searches. New search budgets count that baseline and any newly searched older budget-skipped queries. Reuse of saved evidence, regrading, generation, reviews and provider retries have separate cost implications: **a search-query budget is not a dollar spending limit**.
+
+Manual mode still supports the original plus three alternatives and up to two explicit refinements. It is useful for controlled comparisons and edits. Automatic per-round self-review belongs to the optimize flow; manual run/regrade does not currently provide that same review loop.
+
+## What makes a new batch different
+
+The generator receives evidence gaps, strong/weak examples, recent candidates, already-tried queries and the latest outcome review. It uses concise source-language wording and separates discovery from verification.
+
+The winner-focused policy gives a fresh incumbent an all-local batch. After one stalled batch, five-query allocation becomes four local plus one nearby; after two or more, three local plus two nearby. Ten-query batches use eight/two and six/four. The aim is to investigate why a score jumped instead of abandoning the useful source family. A strictly higher eligible independent score replaces the incumbent; ties/losses retain it.
+
+This strategy can stall. Evidence may not exist publicly, and an unreliable rubric can reward the wrong result. Rechecks can change eligibility, so do not interpret best retention as a promise that a displayed score can never be revised.
+
+## Three responsibilities, separate authority
+
+- **Strategist:** generates search queries and retrieval hypotheses. It cannot score unsearched terms.
+- **Grader:** sees only the outcome, requirements, evaluation date, duplicate policy and returned result evidence. It does not see query wording, target score, generator reasoning or optimizer history.
+- **Reviewer:** checks actual query/results after each automatic round, including the final round. Its findings guide the next batch but cannot overwrite grades.
+
+A supported reviewer disagreement triggers one isolated regrade of the affected query, without sending the reviewer's opinion to the grader. An unresolved criterion dispute holds that query out of best acceptance. Unsupported reviewer quotes are removed and marked incomplete/unverified; unsupported disputes do not authorize score changes. Narrative review text is still advisory and can overstate facts, so warnings matter.
+
+A failed review stops further batches. Retrying automatic improvement checks saved evidence before making new searches. Cancellation is checkpoint-based and may wait for an in-flight provider call. Restarted jobs are marked interrupted, not silently resumed into paid work.
+
+## Score meaning and evidence limits
+
+Results are graded 0-3: irrelevant/hard failure/duplicate, background, plausible but incomplete, or fully supported outcome match. Each mandatory requirement is pass/fail/unknown with an exact supporting excerpt. A hard fail forces zero; unknown evidence caps a result at two.
+
+```text
+score = round(100 * sum(up to ten result grades) / 30, 1)
+```
+
+Missing result positions and identified duplicates contribute zero. Score 70 can mean seven fully supported results, or a mix of partial/background results totaling 21 points. It is not verified lead accuracy, purchase probability or web-wide recall. One source listing many prospects still occupies one URL slot.
+
+Normal grading uses search content capped at 16,000 characters/result; outcome review uses up to 4,000. The app does not open full pages automatically. Exact quote validation proves text presence, not correct interpretation. Date/entity errors, alias duplicates and mismatches between model summary prose and adjusted structured counts remain known issues.
+
+## What happened in the tests
+
+The latest recorded live test is **7 November 2026**, not a new run performed by reading this README:
+
+- Ten actual searches over two rounds; 100 returned-result checks.
+- Batch-best scores 43.3 then 60; target 80 was missed.
+- Both outcome reviews completed, and the first fed the next batch.
+- Known estimated usage cost $0.811617 including recoverable failed-review usage; timed-out calls may have additional unreported charges.
+- The final review still lacked proof that some hosts were leagues and did not confirm named-team participation. The score is not a verified prospect list.
+- Recorded verification: 23 regression tests, production build and desktop/mobile checks passed.
+
+![Recorded November 7 scores](docs/test-scores.png)
+
+Earlier approaches tested cheaper models, stronger generation, changed prospect definitions, broad pivots and winner-focused local variants. Their goals/rubrics/dates differ. The full handoff explains why these experiments are not a controlled model leaderboard and why the earlier nominal 70 does not make the later 60 a direct regression.
+
+See [SOL-BENCHMARK.md](SOL-BENCHMARK.md), [UPCOMING-TOURNAMENTS-TEST.md](UPCOMING-TOURNAMENTS-TEST.md), [WINNER-STRATEGY-TEST.md](WINNER-STRATEGY-TEST.md) and [RESEARCH-UPGRADE-TEST.md](RESEARCH-UPGRADE-TEST.md). Some historical links refer to private data/ files absent from GitHub by design.
+
+## Code and data orientation
+
+Read backend/app.py for API/persistence, engine.py for providers/evidence validation, optimizer.py for the automatic loop, search_strategy.py for allocation, search_prompts.py for prompts, research.py for PDF text selection, and round_review.py for self-checks. src/main.tsx owns the workbench; Optimization.tsx and RoundReviews.tsx show the loop and reviews. mcp/server.ts forwards tools to the local API.
+
+SQLite stores JSON records in data/querywork.sqlite3 using records(kind,id,body). Prompt, experiment, job and settings records preserve the working history. data/api-token protects local API/MCP access. Set QUERYWORK_DATA before startup to use another directory. Back up data/ and .env privately; neither is distributed in the repository.
+
+The supplied PDFs and extracted text are in references/search-guides/. The app selects page-labelled passages and records extraction hashes. This is lightweight lexical selection, not embeddings or unrestricted PDF browsing. Special query operators are not assumed supported merely because an older guide describes them. Third-party authorship and redistribution rights remain with the sources.
+
+## HTTP API and MCP
+
+Interactive schema: http://127.0.0.1:8766/docs. Routes under /api/v1 cover configuration/validation, prompts, experiment creation/history, query editing, generate/run/refine/regrade/optimize, job polling/cancellation and JSON/CSV export. See the full route table and record fields in the technical handoff.
+
+Long-running actions return HTTP 202 plus a job ID. Supply an idempotency_key for each intended operation and poll /jobs/{id}. Reusing the same key retrieves the previous intended submission; a new key requests another operation. API clients use Authorization: Bearer with the local token; the same-origin UI uses an HttpOnly SameSite cookie.
+
+The stdio MCP adapter exposes create_experiment, generate_terms, run_experiment, get_experiment, refine_experiment and optimize_experiment. Start the local service first. A host configuration is:
 
 ```json
 {
@@ -77,44 +172,30 @@ Start the local service first. Configure a compatible MCP host with an absolute 
 }
 ```
 
-Replace both `C:/ABSOLUTE/APP` prefixes with this app's directory. The adapter reads its token relative to its own installation. `QUERYWORK_URL` and `QUERYWORK_TOKEN` environment overrides are supported. It uses stdio and exposes `create_experiment`, `generate_terms`, `run_experiment`, `get_experiment`, `refine_experiment`, and `optimize_experiment`. Long-running tools return jobs; `get_experiment` includes current job states. Clients supply idempotency keys. No host configuration is changed automatically.
+Replace installation paths. QUERYWORK_URL and QUERYWORK_TOKEN are adapter overrides. The HTTP optimize endpoint currently exposes more prompt/feedback selection controls than the MCP optimize tool schema.
 
-## Development and tests
+## Development, verification and recovery
 
-Backend: `.venv/Scripts/python.exe -m uvicorn backend.app:app --host 127.0.0.1 --port 8766`.
+```powershell
+.venv/Scripts/python.exe -m pytest tests/test_app.py -q
+npm run build
+npm run test:mcp
+```
 
-Frontend: `npm run build` produces `dist/`, served by FastAPI. `npm run dev` is available for development; first open the backend URL to establish the browser session, or use the built same-origin interface for complete auth testing.
+The MCP smoke check needs the service running. npm run dev starts Vite with an /api proxy to 8766; establish local backend authentication or use the built same-origin UI for complete access testing.
 
-Tests: `.venv/Scripts/python.exe -m pytest tests/test_app.py -q`, `npm run build`, and (with the local service running) `npm run test:mcp`.
+Historical live/browser scripts may contain absolute Windows runtime paths, saved experiment IDs and pinned dates. Inspect and adapt them before running on a fresh clone. In particular, tests/research_live_test.py is a specific paid benchmark/recovery harness, not a generic safe startup command. No new paid calls are required for documentation changes.
 
-When credentials are ready, the explicit paid-provider check is `.venv/Scripts/python.exe tests/live_smoke.py --live`. It validates credentials, generates one batch, searches four queries, grades them independently, and saves a source-linked report. It does not run without the `--live` flag.
+If the app fails to launch, check dist/index.html and service identity on port 8766. If validation fails, check keys/account model access without publishing them. If a job fails, inspect the saved stage/evidence before retrying. If a run stalls, separate poor retrieval, missing public evidence, grading error and provider failure; do not fix every problem by increasing the query budget.
 
-The database, API token, and local settings live under `data/`, excluded from source control. Back up that directory to preserve experiments. Set `QUERYWORK_DATA` to use another storage directory. On restart, unfinished persisted jobs are marked interrupted and are explicitly retryable.
+## Limitations and next steps
 
-The first version is single-user local software. Hosted accounts, billing, native installers, larger benchmark suites, and page extraction are future extensions.
+Highest priorities: semantic date/entity validation, canonical deduplication, explicit provisional/reviewed acceptance states, unique prospect extraction, fuller evidence verification and a human-labelled benchmark. Then improve pricing/cost ceilings, latency, portable test harnesses and reference selection.
 
-## Automatic improvement
+A public hosted product additionally needs authentication, tenant isolation, secure credential storage, owned jobs, scalable workers, rate limits, billing and monitoring. Binding to loopback and checking a local token do not provide those capabilities.
 
-Choose **Run automatic improvement** on the new-experiment form, or use the **Automatic improvement** panel in an existing workbench. Default controls are target 90/100, five new terms per round, and a total budget of 100 new search queries. Enter the target and budget before starting. One click continues across rounds; there is no default five-round stop. Batch size can be five or ten. Each run can be canceled; completed evidence, scores, and the best search remain saved.
+## Repository and maintenance
 
-The engine sends the strongest three graded searches, weaker examples, criterion-level feedback, and the already-tried queries back to the generator. It generates a fresh batch, searches and independently grades it, and compares the batch best with the prior best. A worse round never replaces a better incumbent. The original outcome, must-haves, model configuration, search settings, and selected grader remain fixed throughout the run. Saved evidence from older rounds is regraded if its grader prompt differs from the run's rubric.
+Private repository: https://github.com/techpulse0000-hub/querywork. Source uploads exclude .env variants except the blank template, local tokens/data, dependencies, build output, caches and scratch files. Do not publish private backups or assume privacy grants a license to the reference PDFs.
 
-Stop reasons are explicit: target reached, maximum new rounds, search-query limit, no new terms, provider failure, cancellation, or interruption. Search limits count logical queries; a provider operation can retry once, so billed requests may exceed that query count. A 90 score is an assessment against the declared rubric, not a guarantee of independently verified facts. If the target cannot be reached, the app returns the best supported result rather than inventing a higher score.
-
-API: `POST /api/v1/experiments/{id}/optimize` with `idempotency_key`, `target_score`, `batch_size`, and `max_queries` (optional `max_rounds` is an explicit API-only cap). Optional `prompt_id` selects the generator and `grader_prompt_id` selects the fixed grader. The request returns a persisted job immediately. `GET /api/v1/experiments/{id}` exposes `optimization` with the best query, comparison history, counters, and stopping reason. The matching MCP tool is `optimize_experiment`.
-
-The browser shows per-round best scores, improvement or regression, best-so-far scores, query counts, and the final best search. Defaults in demo mode demonstrate the loop using clearly fictional evidence; live mode uses your configured providers.
-
-
-The optimizer investigates the incumbent query and its source judgments before generating the next batch. A new winner gets an entire batch of close variations. After one non-improving round, 80% stay local and 20% explore nearby combinations; after two or more, 60% stay local and 40% explore nearby. Ties and losses retain the anchor, and only a strictly better independent grade replaces it. Feedback includes unmet requirements and source excerpts; grading remains isolated from generation and previous scores. The retained best score is monotonic, but trial scores can fall and an evidence-backed target is never guaranteed.
-
-Winner-focused strategy: every new batch records `anchor_query_id`, `anchor_score`, `variation_allocation`, and the evidence-backed `focus` packet. The independent grader never receives the focus packet or prior scores. See `WINNER-STRATEGY-TEST.md` for the live test and limitations.
-
-
-## Research-guided outcome checks
-
-Automatic improvement now supplies page-labelled passages from all three user-provided search guides to the query generator and outcome reviewer. Each completed automatic round, including the final round, receives a structured self-check of the actual returned evidence. The next batch receives that review. Expand **Round outcome checks** in the workbench to inspect findings, proposed tests and source references.
-
-The reviewer uses the configured generator model with medium reasoning; query generation keeps high reasoning for gpt-6.1-sol. Independent grading stays isolated. Quoted grading disagreements trigger one fresh independent regrade; unresolved disagreements are excluded from best-query acceptance without rewriting their scores. Review costs are recorded separately. A failed review stops the loop; starting automatic improvement again reuses cached evidence and retries its review before generating another batch.
-
-New defaults are saved as **Research-guided v4 - evidence review** prompt versions. Existing prompt versions and experiments remain available. The PDFs are stored in `references/search-guides/`; the model receives their extracted passages, not local path strings or assumed file access. Evidence checks use search excerpts and do not claim full-page verification. See `RESEARCH-UPGRADE-TEST.md` for validation and live-test results.
+After each major change, update the project summary, notes, changelog and relevant setup/behavior documentation together. Preserve historical prompt versions, outcomes and date cutoffs. Record what changed, why, which alternatives were considered, tests actually run, measured outcomes, known limits and next tasks. Edit docs/TECHNICAL-HANDOFF.md and docs/WORKSPACE-INVENTORY.md, then run `python tools/sync_handoff.py` to regenerate notes.txt from both documents. Review new folder artifacts as well as the chat history.

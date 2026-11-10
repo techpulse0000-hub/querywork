@@ -1,0 +1,789 @@
+{
+  "reviewed": "2026-11-10",
+  "scope": "Entire local workspace, not only chat or source app",
+  "source_root": "outputs/web-search-evals",
+  "repository": "https://github.com/techpulse0000-hub/querywork",
+  "note": "Metadata only; private/configuration/runtime content is not included. Group counts are a review snapshot, not dependency guarantees.",
+  "first_party_artifacts": [
+    {
+      "path": "README.md",
+      "classification": "workspace_entry_or_release_artifact",
+      "publication": "local only; documented in workspace inventory",
+      "repository_path": null,
+      "bytes_at_inventory": 1054
+    },
+    {
+      "path": "notes.txt",
+      "classification": "workspace_entry_or_release_artifact",
+      "publication": "local only; documented in workspace inventory",
+      "repository_path": null,
+      "bytes_at_inventory": 67741
+    },
+    {
+      "path": "outputs/querywork-automatic-improvement.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-automatic-improvement.png",
+      "bytes_at_inventory": 85515
+    },
+    {
+      "path": "outputs/querywork-continuous-setup.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-continuous-setup.png",
+      "bytes_at_inventory": 111329
+    },
+    {
+      "path": "outputs/querywork-desktop.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-desktop.png",
+      "bytes_at_inventory": 55898
+    },
+    {
+      "path": "outputs/querywork-github-notes.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-github-notes.png",
+      "bytes_at_inventory": 70756
+    },
+    {
+      "path": "outputs/querywork-key-form.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-key-form.png",
+      "bytes_at_inventory": 30675
+    },
+    {
+      "path": "outputs/querywork-publication-manifest.json",
+      "classification": "workspace_entry_or_release_artifact",
+      "publication": "local only; documented in workspace inventory",
+      "repository_path": null,
+      "bytes_at_inventory": 10366
+    },
+    {
+      "path": "outputs/querywork-research-live-desktop.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-research-live-desktop.png",
+      "bytes_at_inventory": 234950
+    },
+    {
+      "path": "outputs/querywork-research-live-mobile.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-research-live-mobile.png",
+      "bytes_at_inventory": 218862
+    },
+    {
+      "path": "outputs/querywork-research-review-desktop.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-research-review-desktop.png",
+      "bytes_at_inventory": 65748
+    },
+    {
+      "path": "outputs/querywork-research-review-mobile.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-research-review-mobile.png",
+      "bytes_at_inventory": 52480
+    },
+    {
+      "path": "outputs/querywork-sol-result.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-sol-result.png",
+      "bytes_at_inventory": 27486
+    },
+    {
+      "path": "outputs/querywork-source-2026-11-10.zip",
+      "classification": "workspace_entry_or_release_artifact",
+      "publication": "local only; documented in workspace inventory",
+      "repository_path": null,
+      "bytes_at_inventory": 1611863
+    },
+    {
+      "path": "outputs/querywork-upcoming-tournament-result.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-upcoming-tournament-result.png",
+      "bytes_at_inventory": 27166
+    },
+    {
+      "path": "outputs/querywork-winner-strategy-result.png",
+      "classification": "historical_screenshot",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/screenshots/archive/querywork-winner-strategy-result.png",
+      "bytes_at_inventory": 28258
+    },
+    {
+      "path": "outputs/web-search-evals-product-plan.md",
+      "classification": "original_planning_proposal",
+      "publication": "preserved copy in repository",
+      "repository_path": "docs/planning/web-search-evals-product-plan-2026-10-27.md",
+      "bytes_at_inventory": 43851
+    },
+    {
+      "path": "outputs/web-search-evals/.env",
+      "classification": "private_configuration",
+      "publication": "excluded; no values or hashes recorded",
+      "repository_path": null
+    },
+    {
+      "path": "outputs/web-search-evals/.env.example",
+      "classification": "private_configuration",
+      "publication": "excluded; no values or hashes recorded",
+      "repository_path": null
+    },
+    {
+      "path": "outputs/web-search-evals/.env.template",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": ".env.template",
+      "bytes_at_inventory": 491
+    },
+    {
+      "path": "outputs/web-search-evals/.gitignore",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": ".gitignore",
+      "bytes_at_inventory": 284
+    },
+    {
+      "path": "outputs/web-search-evals/AGENTS.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "AGENTS.md",
+      "bytes_at_inventory": 1390
+    },
+    {
+      "path": "outputs/web-search-evals/CHANGELOG.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "CHANGELOG.md",
+      "bytes_at_inventory": 4104
+    },
+    {
+      "path": "outputs/web-search-evals/Launch.cmd",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "Launch.cmd",
+      "bytes_at_inventory": 106
+    },
+    {
+      "path": "outputs/web-search-evals/Launch.ps1",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "Launch.ps1",
+      "bytes_at_inventory": 1300
+    },
+    {
+      "path": "outputs/web-search-evals/PRICING.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "PRICING.md",
+      "bytes_at_inventory": 1157
+    },
+    {
+      "path": "outputs/web-search-evals/PROJECT.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "PROJECT.md",
+      "bytes_at_inventory": 4814
+    },
+    {
+      "path": "outputs/web-search-evals/PROMPT-CHANGELOG.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "PROMPT-CHANGELOG.md",
+      "bytes_at_inventory": 5156
+    },
+    {
+      "path": "outputs/web-search-evals/PROMPT-UPGRADE-DRAFT.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "PROMPT-UPGRADE-DRAFT.md",
+      "bytes_at_inventory": 26653
+    },
+    {
+      "path": "outputs/web-search-evals/README.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "README.md",
+      "bytes_at_inventory": 18287
+    },
+    {
+      "path": "outputs/web-search-evals/RESEARCH-UPGRADE-TEST.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "RESEARCH-UPGRADE-TEST.md",
+      "bytes_at_inventory": 5957
+    },
+    {
+      "path": "outputs/web-search-evals/SOL-BENCHMARK.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "SOL-BENCHMARK.md",
+      "bytes_at_inventory": 3136
+    },
+    {
+      "path": "outputs/web-search-evals/Setup.ps1",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "Setup.ps1",
+      "bytes_at_inventory": 878
+    },
+    {
+      "path": "outputs/web-search-evals/UPCOMING-TOURNAMENTS-TEST.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "UPCOMING-TOURNAMENTS-TEST.md",
+      "bytes_at_inventory": 5766
+    },
+    {
+      "path": "outputs/web-search-evals/VERIFICATION.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "VERIFICATION.md",
+      "bytes_at_inventory": 10879
+    },
+    {
+      "path": "outputs/web-search-evals/WINNER-STRATEGY-TEST.md",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "WINNER-STRATEGY-TEST.md",
+      "bytes_at_inventory": 6718
+    },
+    {
+      "path": "outputs/web-search-evals/backend/__init__.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/__init__.py",
+      "bytes_at_inventory": 1
+    },
+    {
+      "path": "outputs/web-search-evals/backend/app.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/app.py",
+      "bytes_at_inventory": 22832
+    },
+    {
+      "path": "outputs/web-search-evals/backend/engine.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/engine.py",
+      "bytes_at_inventory": 16002
+    },
+    {
+      "path": "outputs/web-search-evals/backend/optimizer.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/optimizer.py",
+      "bytes_at_inventory": 14557
+    },
+    {
+      "path": "outputs/web-search-evals/backend/research.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/research.py",
+      "bytes_at_inventory": 1426
+    },
+    {
+      "path": "outputs/web-search-evals/backend/round_review.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/round_review.py",
+      "bytes_at_inventory": 6505
+    },
+    {
+      "path": "outputs/web-search-evals/backend/search_prompts.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/search_prompts.py",
+      "bytes_at_inventory": 17891
+    },
+    {
+      "path": "outputs/web-search-evals/backend/search_strategy.py",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "backend/search_strategy.py",
+      "bytes_at_inventory": 3051
+    },
+    {
+      "path": "outputs/web-search-evals/docs/TECHNICAL-HANDOFF.md",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/TECHNICAL-HANDOFF.md",
+      "bytes_at_inventory": 48056
+    },
+    {
+      "path": "outputs/web-search-evals/docs/WORKSPACE-INVENTORY.md",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/WORKSPACE-INVENTORY.md",
+      "bytes_at_inventory": 19230
+    },
+    {
+      "path": "outputs/web-search-evals/docs/planning/web-search-evals-product-plan-2026-10-27.md",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/planning/web-search-evals-product-plan-2026-10-27.md",
+      "bytes_at_inventory": 43851
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-automatic-improvement.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-automatic-improvement.png",
+      "bytes_at_inventory": 85515
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-continuous-setup.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-continuous-setup.png",
+      "bytes_at_inventory": 111329
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-desktop.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-desktop.png",
+      "bytes_at_inventory": 55898
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-github-notes.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-github-notes.png",
+      "bytes_at_inventory": 70756
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-key-form.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-key-form.png",
+      "bytes_at_inventory": 30675
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-research-live-desktop.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-research-live-desktop.png",
+      "bytes_at_inventory": 234950
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-research-live-mobile.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-research-live-mobile.png",
+      "bytes_at_inventory": 218862
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-research-review-desktop.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-research-review-desktop.png",
+      "bytes_at_inventory": 65748
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-research-review-mobile.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-research-review-mobile.png",
+      "bytes_at_inventory": 52480
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-sol-result.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-sol-result.png",
+      "bytes_at_inventory": 27486
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-upcoming-tournament-result.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-upcoming-tournament-result.png",
+      "bytes_at_inventory": 27166
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/archive/querywork-winner-strategy-result.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/archive/querywork-winner-strategy-result.png",
+      "bytes_at_inventory": 28258
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/automatic-improvement-setup.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/automatic-improvement-setup.png",
+      "bytes_at_inventory": 111329
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/outcome-review-desktop.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/outcome-review-desktop.png",
+      "bytes_at_inventory": 234950
+    },
+    {
+      "path": "outputs/web-search-evals/docs/screenshots/outcome-review-mobile.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/screenshots/outcome-review-mobile.png",
+      "bytes_at_inventory": 218862
+    },
+    {
+      "path": "outputs/web-search-evals/docs/test-scores.png",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/test-scores.png",
+      "bytes_at_inventory": 37536
+    },
+    {
+      "path": "outputs/web-search-evals/docs/test-scores.svg",
+      "classification": "documentation_or_historical_media",
+      "publication": "published source",
+      "repository_path": "docs/test-scores.svg",
+      "bytes_at_inventory": 1788
+    },
+    {
+      "path": "outputs/web-search-evals/docs/workspace-file-inventory.json",
+      "classification": "generated_documentation_inventory",
+      "publication": "published source",
+      "repository_path": "docs/workspace-file-inventory.json",
+      "note": "Self-entry omits recursive byte count."
+    },
+    {
+      "path": "outputs/web-search-evals/index.html",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "index.html",
+      "bytes_at_inventory": 320
+    },
+    {
+      "path": "outputs/web-search-evals/mcp/server.ts",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "mcp/server.ts",
+      "bytes_at_inventory": 2878
+    },
+    {
+      "path": "outputs/web-search-evals/notes.txt",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "notes.txt",
+      "bytes_at_inventory": 67741
+    },
+    {
+      "path": "outputs/web-search-evals/package-lock.json",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "package-lock.json",
+      "bytes_at_inventory": 120345
+    },
+    {
+      "path": "outputs/web-search-evals/package.json",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "package.json",
+      "bytes_at_inventory": 539
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/README.md",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/README.md",
+      "bytes_at_inventory": 1291
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/advanced-internet-search-techniques.pdf",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/advanced-internet-search-techniques.pdf",
+      "bytes_at_inventory": 360254
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/advanced-internet-search-techniques.txt",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/advanced-internet-search-techniques.txt",
+      "bytes_at_inventory": 2946
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/advanced-search-techniques.pdf",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/advanced-search-techniques.pdf",
+      "bytes_at_inventory": 105461
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/advanced-search-techniques.txt",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/advanced-search-techniques.txt",
+      "bytes_at_inventory": 7432
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/in-real-time-search-tips.pdf",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/in-real-time-search-tips.pdf",
+      "bytes_at_inventory": 510914
+    },
+    {
+      "path": "outputs/web-search-evals/references/search-guides/in-real-time-search-tips.txt",
+      "classification": "third_party_research_reference",
+      "publication": "published source",
+      "repository_path": "references/search-guides/in-real-time-search-tips.txt",
+      "bytes_at_inventory": 29340
+    },
+    {
+      "path": "outputs/web-search-evals/requirements.lock.txt",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "requirements.lock.txt",
+      "bytes_at_inventory": 450
+    },
+    {
+      "path": "outputs/web-search-evals/requirements.txt",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "requirements.txt",
+      "bytes_at_inventory": 84
+    },
+    {
+      "path": "outputs/web-search-evals/src/Connections.tsx",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "src/Connections.tsx",
+      "bytes_at_inventory": 4699
+    },
+    {
+      "path": "outputs/web-search-evals/src/Optimization.tsx",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "src/Optimization.tsx",
+      "bytes_at_inventory": 5778
+    },
+    {
+      "path": "outputs/web-search-evals/src/RoundReviews.tsx",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "src/RoundReviews.tsx",
+      "bytes_at_inventory": 2675
+    },
+    {
+      "path": "outputs/web-search-evals/src/main.tsx",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "src/main.tsx",
+      "bytes_at_inventory": 23440
+    },
+    {
+      "path": "outputs/web-search-evals/src/style.css",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "src/style.css",
+      "bytes_at_inventory": 17586
+    },
+    {
+      "path": "outputs/web-search-evals/tests/live_smoke.py",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/live_smoke.py",
+      "bytes_at_inventory": 2888
+    },
+    {
+      "path": "outputs/web-search-evals/tests/mcp-smoke.ts",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/mcp-smoke.ts",
+      "bytes_at_inventory": 2138
+    },
+    {
+      "path": "outputs/web-search-evals/tests/research-live-ui.cjs",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/research-live-ui.cjs",
+      "bytes_at_inventory": 1795
+    },
+    {
+      "path": "outputs/web-search-evals/tests/research-ui.cjs",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/research-ui.cjs",
+      "bytes_at_inventory": 2749
+    },
+    {
+      "path": "outputs/web-search-evals/tests/research_live_test.py",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/research_live_test.py",
+      "bytes_at_inventory": 4187
+    },
+    {
+      "path": "outputs/web-search-evals/tests/sol_report.py",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/sol_report.py",
+      "bytes_at_inventory": 3001
+    },
+    {
+      "path": "outputs/web-search-evals/tests/sol_summary.py",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/sol_summary.py",
+      "bytes_at_inventory": 3928
+    },
+    {
+      "path": "outputs/web-search-evals/tests/test_app.py",
+      "classification": "test_or_historical_harness",
+      "publication": "published source",
+      "repository_path": "tests/test_app.py",
+      "bytes_at_inventory": 30070
+    },
+    {
+      "path": "outputs/web-search-evals/tools/sync_handoff.py",
+      "classification": "documentation_maintenance_helper",
+      "publication": "published source",
+      "repository_path": "tools/sync_handoff.py",
+      "bytes_at_inventory": 1219
+    },
+    {
+      "path": "outputs/web-search-evals/tsconfig.json",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "tsconfig.json",
+      "bytes_at_inventory": 296
+    },
+    {
+      "path": "outputs/web-search-evals/vite.config.ts",
+      "classification": "application_source_or_documentation",
+      "publication": "published source",
+      "repository_path": "vite.config.ts",
+      "bytes_at_inventory": 177
+    },
+    {
+      "path": "tmp/pdfs/guide-1-page-4.png",
+      "classification": "temporary_pdf_inspection",
+      "publication": "excluded; canonical references are published",
+      "repository_path": null,
+      "bytes_at_inventory": 141496
+    },
+    {
+      "path": "tmp/pdfs/guide-1.txt",
+      "classification": "temporary_pdf_inspection",
+      "publication": "excluded; canonical references are published",
+      "repository_path": null,
+      "bytes_at_inventory": 7432
+    },
+    {
+      "path": "tmp/pdfs/guide-2-page-2.png",
+      "classification": "temporary_pdf_inspection",
+      "publication": "excluded; canonical references are published",
+      "repository_path": null,
+      "bytes_at_inventory": 275181
+    },
+    {
+      "path": "tmp/pdfs/guide-2.txt",
+      "classification": "temporary_pdf_inspection",
+      "publication": "excluded; canonical references are published",
+      "repository_path": null,
+      "bytes_at_inventory": 2946
+    },
+    {
+      "path": "tmp/pdfs/guide-3-page-10.png",
+      "classification": "temporary_pdf_inspection",
+      "publication": "excluded; canonical references are published",
+      "repository_path": null,
+      "bytes_at_inventory": 100392
+    },
+    {
+      "path": "tmp/pdfs/guide-3.txt",
+      "classification": "temporary_pdf_inspection",
+      "publication": "excluded; canonical references are published",
+      "repository_path": null,
+      "bytes_at_inventory": 29340
+    }
+  ],
+  "grouped_directories": [
+    {
+      "path": "outputs/querywork-publication",
+      "classification": "generated_or_cache",
+      "file_count": 59,
+      "bytes": 2031963,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/.pytest_cache",
+      "classification": "generated_or_cache",
+      "file_count": 5,
+      "bytes": 2405,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/.venv",
+      "classification": "installed_dependency",
+      "file_count": 2047,
+      "bytes": 33456490,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/data",
+      "classification": "private_runtime_state",
+      "file_count": 24,
+      "bytes": 11432828,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/dist",
+      "classification": "generated_or_cache",
+      "file_count": 3,
+      "bytes": 286591,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/node_modules",
+      "classification": "installed_dependency",
+      "file_count": 9550,
+      "bytes": 125181809,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/backend/__pycache__",
+      "classification": "generated_or_cache",
+      "file_count": 8,
+      "bytes": 120227,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/tests/__pycache__",
+      "classification": "generated_or_cache",
+      "file_count": 2,
+      "bytes": 147583,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    },
+    {
+      "path": "outputs/web-search-evals/tmp/test-temp",
+      "classification": "generated_or_cache",
+      "file_count": 1,
+      "bytes": 43,
+      "publication": "excluded",
+      "reason": "Documented as a directory group; see WORKSPACE-INVENTORY.md."
+    }
+  ],
+  "empty_work_directory": true
+}
